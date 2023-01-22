@@ -2,6 +2,7 @@ ModExtra.page.Home = function (config) {
     config = config || {};
     Ext.applyIf(config, {
         components: [{
+            cls: 'container',
             xtype: 'modextra-panel-home',
             renderTo: 'modextra-panel-home-div'
         }]
