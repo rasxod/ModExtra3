@@ -744,6 +744,17 @@ $modx = new modX();
 $install = new ModExtraPackage($modx, $config);
 $builder = $install->process();
 
+if ($config['pack']) {
+    $name = $builder->getSignature() . '.transport.zip';
+    $modx->log(modX::LOG_LEVEL_INFO, 'имя пакета: '.$name);
+    if ($content = file_get_contents(MODX_CORE_PATH . '/packages/' . $name)) {
+        $modx->log(modX::LOG_LEVEL_INFO, 'Скопировали пакет в rsult...');
+        file_put_contents(__DIR__.'/../result/'.$name, $content);
+        unset($content);
+    }
+}
+
+
 if (!empty($config['download'])) {
     $name = $builder->getSignature() . '.transport.zip';
     if ($content = file_get_contents(MODX_CORE_PATH . '/packages/' . $name)) {
