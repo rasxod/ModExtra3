@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'some_setting' => [
+    'debud' => [
         'xtype' => 'combo-boolean',
         'value' => true,
         'area' => 'modextra_main',
