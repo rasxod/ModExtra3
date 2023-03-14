@@ -40,4 +40,5 @@ return [
     'log_target' => php_sapi_name() == 'cli' ? 'ECHO' : 'HTML',
     // Download transport.zip after build
     'download' => !empty($_REQUEST['download']),
+    'pack'     => true,
 ];
