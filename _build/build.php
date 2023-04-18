@@ -16,7 +16,7 @@ use MODX\Revolution\modAccessPolicy;
 use MODX\Revolution\modAccessPermission;
 use MODX\Revolution\modAccessPolicyTemplate;
 
-class ModExtraPackage
+class daoPackage
 {
     private $modx;
     private $config = [];
@@ -26,7 +26,7 @@ class ModExtraPackage
     public $builder;
 
     /**
-     * ModExtraPackage constructor.
+     * daoPackage constructor.
      *
      * @param modX $modx
      * @param array $config
@@ -168,7 +168,7 @@ class ModExtraPackage
                 "compile" => 0,
                 "update" => 1,
                 "regenerate" => 1,
-                "namespacePrefix" => "ModExtra\\"
+                "namespacePrefix" => "dao\\"
             ]
         );
         $this->modx->log(modX::LOG_LEVEL_INFO, 'Model updated');
@@ -691,14 +691,20 @@ class ModExtraPackage
     {
         $file = $data['context_key'] . '/' . $uri;
         /** @var modResource $resource */
-        $resource = $this->modx->newObject(modResource::class);
+        $resource = $this->modx->getObject(modResource::class, ['id' => $data['id']]);
+        if ($resources == null) {
+            $resource = $this->modx->newObject(modResource::class);
+            if ($data['id']) {
+                $resource->set('id', $data['id']);
+            }
+        }
         $resource->fromArray(array_merge([
-            'parent' => $parent,
-            'published' => true,
+            'parent' => ($data['parent']) ? ($data['parent']) : $parent,
+            'published' => ($data['published']) ? $data['published'] : false,
             'deleted' => false,
-            'hidemenu' => false,
+            'hidemenu' => ($data['hidemenu']) ? $data['hidemenu'] : false,
             'createdon' => time(),
-            'template' => 1,
+            'template' => ($data['template']) ? $data['template'] : 1,
             'isfolder' => !empty($data['isfolder']) || !empty($data['resources']),
             'uri' => $uri,
             'uri_override' => false,
@@ -741,7 +747,7 @@ if (!file_exists(dirname(__FILE__) . '/config.inc.php')) {
 $config = require(dirname(__FILE__) . '/config.inc.php');
 require_once MODX_CORE_PATH . 'model/modx/modx.class.php';
 $modx = new modX();
-$install = new ModExtraPackage($modx, $config);
+$install = new daoPackage($modx, $config);
 $builder = $install->process();
 
 if ($config['pack']) {
