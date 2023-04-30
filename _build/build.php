@@ -16,7 +16,7 @@ use MODX\Revolution\modAccessPolicy;
 use MODX\Revolution\modAccessPermission;
 use MODX\Revolution\modAccessPolicyTemplate;
 
-class daoPackage
+class ModExtraPackage
 {
     private $modx;
     private $config = [];
@@ -26,7 +26,7 @@ class daoPackage
     public $builder;
 
     /**
-     * daoPackage constructor.
+     * ModExtraPackage constructor.
      *
      * @param modX $modx
      * @param array $config
@@ -168,7 +168,7 @@ class daoPackage
                 "compile" => 0,
                 "update" => 1,
                 "regenerate" => 1,
-                "namespacePrefix" => "dao\\"
+                "namespacePrefix" => "ModExtra\\"
             ]
         );
         $this->modx->log(modX::LOG_LEVEL_INFO, 'Model updated');
@@ -747,7 +747,7 @@ if (!file_exists(dirname(__FILE__) . '/config.inc.php')) {
 $config = require(dirname(__FILE__) . '/config.inc.php');
 require_once MODX_CORE_PATH . 'model/modx/modx.class.php';
 $modx = new modX();
-$install = new daoPackage($modx, $config);
+$install = new ModExtraPackage($modx, $config);
 $builder = $install->process();
 
 if ($config['pack']) {
