@@ -5,7 +5,7 @@ return [
         'file' => 'modextra',
         'description' => '',
         'events' => [
-            'OnManagerPageInit' => [],
+            'OnLoadWebDocument' => [],
         ],
     ],
 ];
