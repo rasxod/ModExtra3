@@ -12,6 +12,11 @@ if (!$transport->xpdo || !($transport instanceof xPDOTransport)) {
 
 $modx = $transport->xpdo;
 $packages = [
+$packages = [
+    'ClientConfig' => [
+        'version' => '2.4.0-pl',
+        'service_url' => 'modx.com',
+    ],
     'Ace' => [
         'version' => '1.9.3-pl',
         'service_url' => 'modstore.pro',

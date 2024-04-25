@@ -1,0 +1,1 @@
+<strong> General provisions</strong>
