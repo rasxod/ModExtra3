@@ -18,11 +18,11 @@ $packages = [
         'service_url' => 'modx.com',
     ],
     'Ace' => [
-        'version' => '1.9.3-pl',
+        'version' => '1.9.4-pl',
         'service_url' => 'modstore.pro',
     ],
     'pdoTools' => [
-        'version' => '3.0.0-beta',
+        'version' => '3.0.2-pl',
         'service_url' => 'modstore.pro',
     ],
 ];
